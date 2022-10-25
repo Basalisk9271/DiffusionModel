@@ -1,8 +1,10 @@
+#Gabe Imlay
+#CSC330: Organization of Programming Languages
+#Project 2: Diffusion Model -> Python
+#November 17th, 2022
+
 import math
 
-
-# Diffusion project code given to us by Dr. Pounds
-# Not my original work
 class Diffusion :
     @staticmethod
     def main( args) :
