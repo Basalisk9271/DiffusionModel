@@ -1,3 +1,7 @@
+//Gabe Imlay
+//CSC330: Organization of Programming Languages
+//Project 2: Diffusion Model -> C++
+//November 17th, 2022
 
 #include <iostream>
 #include <string>
