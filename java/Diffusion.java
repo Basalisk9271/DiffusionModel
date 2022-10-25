@@ -1,3 +1,8 @@
+//Gabe Imlay
+//CSC330: Organization of Programming Languages
+//Project 2: Diffusion Model -> Java
+//November 17th, 2022
+
 //Diffusion project code given to us by Dr. Pounds
 //Not my original work 
 
