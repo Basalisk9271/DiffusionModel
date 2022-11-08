@@ -13,3 +13,4 @@
 # Ignore files with extension `.class` & `.sm`
 *.class
 *.sm
+*.out
