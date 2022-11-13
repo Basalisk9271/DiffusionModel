@@ -75,23 +75,7 @@ int main(int argc, char **argv)
             }
         }
     }
-    
-    
-
-    //print the partition
-        for (int i = 0; i < maxsize; i++)
-        {
-            for (int j = 0; j < maxsize; j++)
-            {
-                for (int k = 0; k < maxsize; k++)
-                {
-                    cout << partition[i][j][k] << " ";
-                }
-                cout << endl;
-            }
-            cout << "\n" << endl;
-        }
-    
+  
     double time = 0.0; // to keep up with accumulated system time.
     double ratio = 0.0;
     do
