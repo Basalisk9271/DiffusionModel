@@ -12,7 +12,19 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    int maxsize = 10;
+    
+    int maxsize;
+    char choice;
+    //takes in the number for maxsize
+    cout << "What would you like maxsize to be: ";
+    cin >> maxsize;
+    //take in whether the user wants a partition or not
+    do{
+        cout << "Would you like a partition (y for 'yes' and n for 'no'): ";
+        cin >> choice;
+    }while(choice != 'y' && choice != 'n');
+    
+    int partition [maxsize][maxsize][maxsize];
     double cube[maxsize][maxsize][maxsize];
     // Zero the cube
     for (int i = 0; i < maxsize; i++)
@@ -32,9 +44,53 @@ int main(int argc, char **argv)
     double distance_between_blocks = room_dimension / maxsize;
     double DTerm = diffusion_coefficient * timestep / (distance_between_blocks * distance_between_blocks);
     
+    // Zero the partition
+    for (int i = 0; i < maxsize; i++)
+    {
+        for (int j = 0; j < maxsize; j++)
+        {
+            for (int k = 0; k < maxsize; k++)
+            {
+                partition[i][j][k] = 0;
+            }
+        }
+    }
+    
+   
+    
     // Initialize the first cell
     //
     cube[0][0][0] = 1.0E21;
+
+    if (choice == 'y'){
+        //if the user selects yes, set the partition as 1's in the partition cube
+        for (int i = ceil(maxsize*.5)-1; i < ceil(maxsize*.5); i++)
+        {
+            for (int j = ceil(maxsize*.5)-1; j < maxsize; j++)
+            {
+                for (int k = 0; k < maxsize; k++)
+                {
+                    partition[i][j][k] = 1;
+                }
+            }
+        }
+    }
+    
+    
+
+    //print the partition
+        for (int i = 0; i < maxsize; i++)
+        {
+            for (int j = 0; j < maxsize; j++)
+            {
+                for (int k = 0; k < maxsize; k++)
+                {
+                    cout << partition[i][j][k] << " ";
+                }
+                cout << endl;
+            }
+            cout << "\n" << endl;
+        }
     
     double time = 0.0; // to keep up with accumulated system time.
     double ratio = 0.0;
@@ -46,12 +102,13 @@ int main(int argc, char **argv)
                     for (int l = 0; l < maxsize; l++){
                         for (int m = 0; m < maxsize; m++){
                             for (int n = 0; n < maxsize; n++){
-                                if (    ((i == l) && (j == m) && (k == n + 1)) || 
+                                if (    (((i == l) && (j == m) && (k == n + 1)) || 
                                         ((i == l) && (j == m) && (k == n - 1)) || 
                                         ((i == l) && (j == m + 1) && (k == n)) || 
                                         ((i == l) && (j == m - 1) && (k == n)) || 
                                         ((i == l + 1) && (j == m) && (k == n)) || 
-                                        ((i == l - 1) && (j == m) && (k == n)) ) {
+                                        ((i == l - 1) && (j == m) && (k == n))) && partition [i][j][k] != 1 && partition[l][m][n] != 1) {
+                                        //must check to see if a specified block in the partition cube is a partion or not 
                                     
                                     double change = (cube[i][j][k] - cube[l][m][n]) * DTerm;
                                     cube[i][j][k] = cube[i][j][k] - change;
@@ -72,9 +129,12 @@ int main(int argc, char **argv)
         for (int i = 0; i < maxsize; i++){
             for (int j = 0; j < maxsize; j++){
                 for (int k = 0; k < maxsize; k++){
-                    maxval = max(cube[i][j][k],maxval);
-                    minval = min(cube[i][j][k],minval);
-                    sumval += cube[i][j][k];
+                    if (partition[i][j][k] != 1){ // protect from the partition
+                        maxval = max(cube[i][j][k],maxval);
+                        minval = min(cube[i][j][k],minval);
+                        sumval += cube[i][j][k];
+                    }
+                    
                 }
             }
         }
