@@ -66,7 +66,7 @@ int main(int argc, char **argv)
         //if the user selects yes, set the partition as 1's in the partition cube
         for (int i = ceil(maxsize*.5)-1; i < ceil(maxsize*.5); i++)
         {
-            for (int j = ceil(maxsize*.5)-1; j < maxsize; j++)
+            for (int j = ceil(maxsize*.25)-1; j < maxsize; j++)
             {
                 for (int k = 0; k < maxsize; k++)
                 {
