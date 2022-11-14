@@ -24,8 +24,10 @@ int main(int argc, char **argv)
         cin >> choice;
     }while(choice != 'y' && choice != 'n');
     
-    int partition [maxsize][maxsize][maxsize];
-    double cube[maxsize][maxsize][maxsize];
+    //Dynamic arrays for the partition and cube
+    vector<vector<vector<double>>> cube(maxsize, vector<vector<double> > (maxsize,vector<double>(maxsize)));
+    vector<vector<vector<int>>> partition(maxsize, vector<vector<int> > (maxsize,vector<int>(maxsize)));
+
     // Zero the cube
     for (int i = 0; i < maxsize; i++)
     {
