@@ -25,8 +25,8 @@ int main(int argc, char **argv)
     }while(choice != 'y' && choice != 'n');
     
     //Dynamic arrays for the partition and cube
-    vector<vector<vector<double>>> cube(maxsize, vector<vector<double> > (maxsize,vector<double>(maxsize)));
-    vector<vector<vector<int>>> partition(maxsize, vector<vector<int> > (maxsize,vector<int>(maxsize)));
+    vector<vector<vector<double> > > cube(maxsize, vector<vector<double> > (maxsize,vector<double> (maxsize)));
+    vector<vector<vector<int> > > partition(maxsize, vector<vector<int> > (maxsize,vector<int> (maxsize)));
 
     // Zero the cube
     for (int i = 0; i < maxsize; i++)
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 
     if (choice == 'y'){
         //if the user selects yes, set the partition as 1's in the partition cube
-        i = ceil(maxsize*.5)-1
+        int i = ceil(maxsize*.5)-1;
         for (int j = ceil(maxsize*.25)-1; j < maxsize; j++)
         {
             for (int k = 0; k < maxsize; k++)
