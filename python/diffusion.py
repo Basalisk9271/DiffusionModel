@@ -5,23 +5,17 @@
 
 import math
 
-
 def main():
     maxsize = int(input("What would you like maxsize to be: "))
     choice = input("Would you like a partition (y for 'yes' and n for 'no'): ")
     cube = [[[0.0] * (maxsize) for _ in range(maxsize)] for _ in range(maxsize)]
     partition = [[[0.0] * (maxsize) for _ in range(maxsize)] for _ in range(maxsize)]
-    # Zero the cube
-    i = 0
-    while (i < maxsize) :
-        j = 0
-        while (j < maxsize) :
-            k = 0
-            while (k < maxsize) :
-                cube[i][j][k] = 0.0
-                k += 1
-            j += 1
-        i += 1
+    
+    # Zero the partition
+    for i in range (0,maxsize) :
+        for j in range (0,maxsize) :
+            for k in range (0,maxsize) :
+                cube[i][j][k] = 0
   
     diffusion_coefficient = 0.175
     room_dimension = 5 # 5 Meters
@@ -31,16 +25,10 @@ def main():
     DTerm = diffusion_coefficient * timestep / (distance_between_blocks * distance_between_blocks)
     
     # Zero the partition
-    i = 0
-    while (i < maxsize) :
-        j = 0
-        while (j < maxsize) :
-            k = 0
-            while (k < maxsize) :
+    for i in range (0,maxsize) :
+        for j in range (0,maxsize) :
+            for k in range (0,maxsize) :
                 partition[i][j][k] = 0
-                k += 1
-            j += 1
-        i += 1
     # Initialize the first cell
 
     cube[0][0][0] = 1.0E21
@@ -57,12 +45,6 @@ def main():
 
     time = 0.0 # to keep up with accumulated system time.
     ratio = 0.0
-    
-     
-     
-    
-    
-     
      
     while True :
         i = 0
