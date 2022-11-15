@@ -43,11 +43,10 @@ program Diffusion
 
     !if the user selects yes, set the partition as 1's in the partition cube
     if (choice .eq. 'y') then
-        do i = int(ceiling(real(maxsize*.5))-1), int(ceiling(real(maxsize*.5))-1)
-            do j = int(ceiling(real(maxsize*.25))-1), maxsize-1
-                do k = 0, maxsize-1
-                    partition(i,j,k) = 1
-                end do
+        i = int(ceiling(real(maxsize*.5))-1)
+        do j = int(ceiling(real(maxsize*.25))-1), maxsize-1
+            do k = 0, maxsize-1
+                partition(i,j,k) = 1
             end do
         end do
     end if
