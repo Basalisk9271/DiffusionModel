@@ -13,3 +13,5 @@
 *.class
 *.sm
 *.out
+*.ali
+*.o
