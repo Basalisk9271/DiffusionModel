@@ -48,7 +48,7 @@ def main():
     if (choice == 'y'):
         #if the user selects yes, set the partition as 1's in the partition cube
         i = (math.ceil(maxsize*.5)-1)
-        for j in range (math.ceil(maxsize*.5)-1, maxsize) :
+        for j in range (math.ceil(maxsize*.25)-1, maxsize) :
             for k in range (0,maxsize) :
                 partition[i][j][k] = 1
                 
