@@ -27,11 +27,10 @@ function main()
 
     #if the user selects yes, set the partition as 1's in the partition cube
     if choice == "y"
-        for i = ceil(Int,maxsize*.5):ceil(Int,maxsize*.5)
-            for j = ceil(Int,maxsize*.25):maxsize
-                for k = 1:maxsize
-                    partition[i,j,k] = 1
-                end
+    i = ceil(Int,maxsize*.5)
+        for j = ceil(Int,maxsize*.25):maxsize
+            for k = 1:maxsize
+                partition[i,j,k] = 1
             end
         end
     end
