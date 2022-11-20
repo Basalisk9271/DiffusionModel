@@ -15,23 +15,9 @@
 
 ;;; Here is the main program
 (progn
-    (defvar cube)
-    (defvar partition)
-    (defvar maxsize)
-    (defvar choice)
-    (defvar i)
-    (defvar timevar)
-    (defvar ratiovar)
-    (defvar diffusion_coefficient)
-    (defvar room_dimension)
-    (defvar speed_of_gas_molecules)
-    (defvar timestep)
-    (defvar distance_between_blocks)
-    (defvar DTerm)
-    (defvar change)
-    (defvar sumval)
-    (defvar maxval)
-    (defvar minval)
+    (let (cube partition maxsize choice i j k l m n time ratio diffusion_coefficient room_dimension 
+    speed_of_gas_molecules timestep distance_between_blocks dterm change sumval maxval minval)
+    
 
     ; Set the array sizes so that they have memory
 
@@ -40,16 +26,16 @@
     (setf maxsize (read))
     
     ; Create the cube and partition filled with zeroes
-    (setf cube (make-array `(,maxsize ,maxsize ,maxsize) :initial-element '(0.0l0)))
-    (setf partition (make-array `(,maxsize ,maxsize ,maxsize) :initial-element '(0)))
+    (setf cube (make-array `(,maxsize ,maxsize ,maxsize) :initial-element 0.0l0))
+    (setf partition (make-array `(,maxsize ,maxsize ,maxsize) :initial-element 0))
     (princ "Would you like a partition (y for 'yes' and n for 'no'): ") (finish-output)
     (if (string= (read) "Y")
         (progn
-        (setf i (ceiling (* maxsize 0.5)))
-        (loop for j from  (ceiling (* maxsize 0.25)) to (- maxsize 1)
+        
+        (setf i (- (ceiling (* maxsize 0.5)) 1))
+        (princ i)
+        (loop for j from (- (ceiling (* maxsize 0.25) ) 1) to (- maxsize 1)
         do
-          (princ "Test")
-          (terpri)
           (loop for k from 0 to (- maxsize 1)
             do
             (setf (aref partition i j k) 1)
@@ -58,18 +44,21 @@
     )
 
     ;print off the cubes
-    (dotimes (i maxsize)
-        (dotimes(j maxsize)
-            (dotimes(k maxsize)
-                (princ (aref partition i j k))
-            )
-            (terpri)
-        )
-    (terpri)
-    )
+    ; (loop for i from 0 to (- maxsize 1)
+    ;     do
+    ;     (loop for j from 0 to (- maxsize 1)
+    ;         do
+    ;         (loop for k from 0 to (- maxsize 1)
+    ;             do
+    ;             (princ (aref partition i j k))
+    ;         )
+    ;         (terpri)
+    ;     )
+    ; (terpri)
+    ; )
 
-    (setf timevar 0.0)
-    (setf ratiovar 0.0)
+    (setf time 0.0)
+    (setf ratio 0.0)
     (setf diffusion_coefficient 0.175)
     (setf room_dimension 5.0)
     (setf speed_of_gas_molecules 250.0) ; Based on 100 g/mol gas at RT
@@ -80,22 +69,24 @@
     (setf (aref cube 0 0 0) 1E21)
 
     (loop 
-        (dotimes (i maxsize)
-            (dotimes(j maxsize)
-                (dotimes(k maxsize)
-                    (dotimes (l maxsize)
-                        (dotimes(m maxsize)
-                            (dotimes(n maxsize)
-                                if ((and (or (and (= i l) (= j m) (= k (+ n 1))) 
-                                             (and (= i l) (= j m) (= k (- n 1)))
-                                             (and (= i l) (= j (+ m 1)) (= k n)) 
-                                             (and (= i l) (= j (- m 1)) (= k n)) 
-                                             (and (= i (+ l 1)) (= j m) (= k n)) 
-                                             (and (= i (- l 1)) (= j m) (= k n))) (and (/= (aref partition i j k) 1) (/= (aref partition i j k) 1)))
+        (loop for i from 0 to (- maxsize 1) 
+            do (loop for j from 0 to (- maxsize 1) 
+                do (loop for k from 0 to (- maxsize 1) 
+                    do (loop for l from 0 to (- maxsize 1) 
+                        do (loop for m from 0 to (- maxsize 1) 
+                            do (loop for n from 0 to (- maxsize 1) 
+                                do (if (and (or (and (= i l) (= j m) (= k (+ n 1))) 
+                                             (or (and (= i l) (= j m) (= k (- n 1)))
+                                             (or (and (= i l) (= j (+ m 1)) (= k n)) 
+                                             (or (and (= i l) (= j (- m 1)) (= k n)) 
+                                             (or (and (= i (+ l 1)) (= j m) (= k n)) 
+                                             (and (= i (- l 1)) (= j m) (= k n))))))) (and (/= (aref partition i j k) 1) (/= (aref partition l m n) 1)))
                                 (progn
-                                (setf change (* (- (aref cube i j k) (aref cube l m n)) dterm ))
-                                (setf (aref cube i j k) (- (aref cube i j k) change))
-                                (setf (aref cube l m n) (+ (aref cube l m n) change)))
+                                    (setf change (* (- (aref cube i j k) (aref cube l m n)) dterm ))
+                                    (setf (aref cube i j k) (- (aref cube i j k) change))
+                                    (setf (aref cube l m n) (+ (aref cube l m n) change))
+                                ); progn 
+                                
                                 )
                             )
                         )
@@ -104,30 +95,31 @@
             )
         )
 
-        (setf timevar (+ timevar timestep))
+        (setf time (+ time timestep))
         
         (setf sumval 0.0)
         (setf maxval (aref cube 0 0 0))
         (setf minval (aref cube 0 0 0))
         
-        (dotimes (i maxsize)
-            (dotimes (j maxsize)
-                (dotimes (k maxsize)
-                    (if (/= (aref partition i j k) 1)
-                        do
-                        (setf maxval (max((aref cube i j k) maxval)))
-                        (setf minval (min((aref cube i j k) minval)))
-                        (setf sumval (+ sumval (aref cube i j k)))
-                    )
-                )    
-            )
-        )
+         (loop for i from 0 to (- maxsize 1) 
+             do (loop for j from 0 to (- maxsize 1)
+                 do (loop for k from 0 to (- maxsize 1) 
+                     do (if (/= (aref partition i j k) 1)
+                         (progn
+                            (setf maxval (max (aref cube i j k ) maxval))
+                            (setf minval (min (aref cube i j k ) minval ))
+                            (setf sumval (+ sumval (aref cube i j k)))
+                         ) ;progn
+                     )
+                 )    
+             )
+         )
+        
+        (setf ratio (/ minval maxval))
 
-        (setf ratiovar (/ minval maxval))
-
-        (princ timevar)
+        (princ time)
         (princ " ")
-        (princ ratiovar)
+        (princ ratio)
         (princ " ")
         (princ (aref cube 0 0 0))
         (princ " ")
@@ -141,11 +133,12 @@
         (terpri)
         
 
-        (when (>= ratiovar 0.99)(return))
+        (when (>= ratio 0.99)(return))
     )
     (princ "Box equilibrated in ")
-    (princ timevar)
+    (princ time)
     (princ " seconds of simulated time.")
+    (terpri)
 
-)
+))
 
