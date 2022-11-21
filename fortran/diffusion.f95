@@ -96,19 +96,19 @@ program Diffusion
         end do
 
         ratio = minval/maxval
-        WRITE(*, '(F0.5)',advance="no") time
-        write(*, '(A)',advance="no") " "
-        WRITE(*, '(F0.16)',advance="no") ratio
-        write(*, '(A)',advance="no") " "
-        WRITE(*, '(F0.5)',advance="no") cube(0,0,0)
-        write(*, '(A)',advance="no") " "
-        write(*, '(F0.5)',advance="no") cube(maxsize-1,0,0)
-        write(*, '(A)',advance="no") " "
-        write(*, '(F0.5)',advance="no") cube(maxsize-1,maxsize-1,0)
-        write(*, '(A)',advance="no") " "
-        write(*, '(F0.5)',advance="no") cube(maxsize-1,maxsize-1,maxsize-1)
-        write(*, '(A)',advance="no") " "
-        write(*, '(F0.5)',advance="yes") sumval
+        !WRITE(*, '(F0.5)',advance="no") time
+        !write(*, '(A)',advance="no") " "
+        !WRITE(*, '(F0.16)',advance="no") ratio
+        !write(*, '(A)',advance="no") " "
+        !WRITE(*, '(F0.5)',advance="no") cube(0,0,0)
+        !write(*, '(A)',advance="no") " "
+        !write(*, '(F0.5)',advance="no") cube(maxsize-1,0,0)
+        !write(*, '(A)',advance="no") " "
+        !write(*, '(F0.5)',advance="no") cube(maxsize-1,maxsize-1,0)
+        !write(*, '(A)',advance="no") " "
+        !write(*, '(F0.5)',advance="no") cube(maxsize-1,maxsize-1,maxsize-1)
+        !write(*, '(A)',advance="no") " "
+        !write(*, '(F0.5)',advance="yes") sumval
         if (ratio >= .99) exit
     end do
 
