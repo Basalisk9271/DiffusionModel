@@ -87,11 +87,11 @@ def main():
         ratio = minval / maxval
         
         # System.out.println( ratio + " time = " + time);
-        print(str(time) + " " + str(cube[0][0][0]), end ="")
-        print(" " + str(cube[maxsize - 1][0][0]), end ="")
-        print(" " + str(cube[maxsize - 1][maxsize - 1][0]), end ="")
-        print(" " + str(cube[maxsize - 1][maxsize - 1][maxsize - 1]), end ="")
-        print(" " + str(sumval) + "\n", end ="")
+        # print(str(time) + " " + str(cube[0][0][0]), end ="")
+        # print(" " + str(cube[maxsize - 1][0][0]), end ="")
+        # print(" " + str(cube[maxsize - 1][maxsize - 1][0]), end ="")
+        # print(" " + str(cube[maxsize - 1][maxsize - 1][maxsize - 1]), end ="")
+        # print(" " + str(sumval) + "\n", end ="")
         if((ratio < 0.99) == False) :
                 break
     print("Box equilibrated in " + str(time) + " seconds of simulated time.")
