@@ -126,11 +126,11 @@ int main(int argc, char **argv)
         ratio = minval / maxval;
 
         // System.out.println( ratio + " time = " + time);
-        cout << to_string(time) + " " + to_string(cube[0][0][0]);
-        cout << " " + to_string(cube[maxsize - 1][0][0]);
-        cout << " " + to_string(cube[maxsize - 1][maxsize - 1][0]);
-        cout << " " + to_string(cube[maxsize - 1][maxsize - 1][maxsize - 1]);
-        cout << " " + to_string(sumval) + "\n";
+        // cout << to_string(time) + " " + to_string(cube[0][0][0]);
+        // cout << " " + to_string(cube[maxsize - 1][0][0]);
+        // cout << " " + to_string(cube[maxsize - 1][maxsize - 1][0]);
+        // cout << " " + to_string(cube[maxsize - 1][maxsize - 1][maxsize - 1]);
+        // cout << " " + to_string(sumval) + "\n";
     } while (ratio < 0.99);
     
     cout << "Box equilibrated in " + to_string(time) + " seconds of simulated time." << endl;
