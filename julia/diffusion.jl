@@ -78,11 +78,11 @@ function main()
         
         ratio = minval / maxval
 
-        print(time," ",cube[1,1,1])
-        print(" ",cube[maxsize,1,1])
-        print(" ",cube[maxsize,maxsize,1])
-        print(" ",cube[maxsize,maxsize,maxsize])
-        println(" ",sumval)
+        # print(time," ",cube[1,1,1])
+        # print(" ",cube[maxsize,1,1])
+        # print(" ",cube[maxsize,maxsize,1])
+        # print(" ",cube[maxsize,maxsize,maxsize])
+        # println(" ",sumval)
 
         if (ratio >= 0.99) 
             break
