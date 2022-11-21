@@ -101,24 +101,24 @@ begin
 
                 ratio := minval/maxval;
                 
-                put(time,0,5,0);
-                put(" ");
-                put(minval);
-                put(" ");
-                put(maxval);
-                put(" ");
-                put(ratio);
-                put(" ");
-                put(cube(1,1,1));
-                put(" ");
-                put(cube(maxsize,1,1));
-                put(" ");
-                put(cube(maxsize,maxsize,1));
-                put(" ");
-                put(cube(maxsize,maxsize,maxsize));
-                put(" ");
-                put(sumval);
-                new_line;
+                --put(time,0,5,0);
+                --put(" ");
+                --put(minval);
+                --put(" ");
+                --put(maxval);
+                --put(" ");
+                --put(ratio);
+                --put(" ");
+                --put(cube(1,1,1));
+                --put(" ");
+                --put(cube(maxsize,1,1));
+                --put(" ");
+                --put(cube(maxsize,maxsize,1));
+                --put(" ");
+                --put(cube(maxsize,maxsize,maxsize));
+                --put(" ");
+                --put(sumval);
+                --new_line;
 
                 
             end;
