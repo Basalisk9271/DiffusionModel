@@ -1,4 +1,4 @@
-#!/usr2/local/julia-1.8.2/bin/julia
+#!/usr/bin/julia
 #Gabe Imlay
 #CSC330: Organization of Programming Languages
 #Project 2: Diffusion Model -> Julia
